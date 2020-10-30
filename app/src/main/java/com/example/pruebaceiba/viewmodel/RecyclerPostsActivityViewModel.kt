@@ -36,7 +36,6 @@ class RecyclerPostsActivityViewModel : ViewModel(){
         call.enqueue(object : Callback<ArrayList<UserPost>> {
             override fun onResponse(call: Call<ArrayList<UserPost>>, response: Response<ArrayList<UserPost>>) {
                 if (response.isSuccessful){
-                    //DBState.DBsize = response.body()!!.size
                     CoroutineScope(Dispatchers.IO).launch{
                         for (posts in response.body()!!)
                         {

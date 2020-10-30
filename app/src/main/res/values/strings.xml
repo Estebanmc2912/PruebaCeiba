@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Prueba de Ingreso</string>
     <string name="btn_posts">Ver publicaciones</string>
-
+    <string name="buscar_usuario">Buscar usuario</string>
+    <string name ="publicacionesdospuntos">Publicaciones :</string>
+    <string name ="publicaciones">Publicaciones</string>
 </resources>

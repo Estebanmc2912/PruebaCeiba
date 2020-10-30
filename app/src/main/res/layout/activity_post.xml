@@ -16,22 +16,14 @@
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/cv_rl_usuario_post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="15dp">
-
-
             <LinearLayout
                 android:id="@+id/cv_ll_usuario_info_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
+                android:padding="15dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -39,7 +31,7 @@
                     style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Leanne Graham" />
+                    />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/cv_cl_telefono_post"
@@ -53,12 +45,12 @@
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/stat_sys_phone_call"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        android:contentDescription="@null"/>
 
                     <TextView
                         android:id="@+id/cv_tv_telefono_post"
                         style="@style/SubText_CV"
-                        android:text="1-770-736-8031 x56442"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/cv_iv_telefono_post"
@@ -77,12 +69,12 @@
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/ic_dialog_email"
-                        tools:ignore="MissingConstraints" />
+                        tools:ignore="MissingConstraints"
+                        android:contentDescription="@null"/>
 
                     <TextView
                         android:id="@+id/cv_tv_correo_post"
                         style="@style/SubText_CV"
-                        android:text="Sincere@email.com"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/cv_iv_correo_post"
@@ -107,17 +99,25 @@
                         style="@style/button_cv"
                         android:layout_marginStart = "0dp"
                         android:layout_marginLeft = "0dp"
-                        android:text="Publicaciones:"
+                        android:text="@string/publicacionesdospuntos"
                         android:clickable="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <ProgressBar
+                    android:id="@+id/progress_Bar_posts"
+                    style="@style/progress_bar"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_cl_btn_post" />
+
             </LinearLayout>
 
-        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_posts"

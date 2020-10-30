@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener{
             this@MainActivity.runOnUiThread({
                 progress_Bar.visibility = View.VISIBLE
             })
-
             try {
                 var i=0
                 while(database.users().getSizeUsers()!=DBState.DBsize){
@@ -57,7 +56,6 @@ class MainActivity : AppCompatActivity() , SearchView.OnQueryTextListener{
             } catch (e: InterruptedException) {
                 e.printStackTrace()
             }
-
             this@MainActivity.runOnUiThread({
                 progress_Bar.visibility = View.GONE
             })

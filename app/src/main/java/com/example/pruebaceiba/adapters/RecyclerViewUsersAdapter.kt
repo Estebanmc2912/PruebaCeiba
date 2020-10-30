@@ -11,7 +11,9 @@ import com.example.pruebaceiba.PostsActivity
 import com.example.pruebaceiba.R
 import com.example.pruebaceiba.model.User
 import kotlinx.android.synthetic.main.user_list_item.view.*
+import java.util.*
 import java.util.stream.Collectors
+import kotlin.collections.ArrayList
 
 class RecyclerViewUsersAdapter : RecyclerView.Adapter<RecyclerViewUsersAdapter.MyViewHolder>() {
 
@@ -46,7 +48,7 @@ class RecyclerViewUsersAdapter : RecyclerView.Adapter<RecyclerViewUsersAdapter.M
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
                 items.clear()
                 val collect = originalitems.stream()
-                    .filter { i -> i.name.toLowerCase().contains(strSearch)  }
+                    .filter { i -> i.name.toLowerCase(Locale.ENGLISH).contains(strSearch)  }
                     .collect(Collectors.toList())
                 items.addAll(collect)
 
@@ -68,7 +70,7 @@ class RecyclerViewUsersAdapter : RecyclerView.Adapter<RecyclerViewUsersAdapter.M
         val correo = view.cv_tv_correo
 
         init{
-            itemView.setOnClickListener { v: View ->
+            itemView.cv_btn_verPublicaciones.setOnClickListener { v: View ->
                 val position : Int = adapterPosition
                     val intent = Intent(itemView.context, PostsActivity::class.java).apply {
                         putExtra("name", view.cv_tv_nombre.text)

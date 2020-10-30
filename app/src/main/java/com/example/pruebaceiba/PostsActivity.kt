@@ -1,14 +1,18 @@
 package com.example.pruebaceiba
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isEmpty
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebaceiba.adapters.RecyclerViewPostsAdapter
 import com.example.pruebaceiba.model.UserPost
+import com.example.pruebaceiba.utils.DBState
 import com.example.pruebaceiba.viewmodel.RecyclerPostsActivityViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_post.*
 
 class PostsActivity : AppCompatActivity() {
@@ -42,9 +46,25 @@ class PostsActivity : AppCompatActivity() {
         cv_tv_telefono_post.text = phone
         cv_tv_correo_post.text = email
 
+
+        Thread({
+            this@PostsActivity.runOnUiThread({
+                progress_Bar_posts.visibility = View.VISIBLE
+            })
+            try {
+                var i=0
+                while(rv_posts.isEmpty()){
+                    i++
+                }
+            } catch (e: InterruptedException) {
+                e.printStackTrace()
+            }
+            this@PostsActivity.runOnUiThread({
+                progress_Bar_posts.visibility = View.GONE
+            })
+        }).start()
+
         val viewModel = ViewModelProvider(this).get(RecyclerPostsActivityViewModel::class.java)
-
-
         viewModel.getRecyclerListDataObserver()
                 .observe(this, Observer<ArrayList<UserPost>> {
                     if (it != null) {
