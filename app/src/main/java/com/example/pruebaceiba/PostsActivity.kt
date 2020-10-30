@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pruebaceiba.adapters.RecyclerViewPostsAdapter
 import com.example.pruebaceiba.model.UserPost
@@ -33,7 +33,6 @@ class PostsActivity : AppCompatActivity() {
 
     fun createData(){
 
-
         val name = intent.getStringExtra("name")
         val phone = intent.getStringExtra("phone")
         val email = intent.getStringExtra("email")
@@ -43,7 +42,8 @@ class PostsActivity : AppCompatActivity() {
         cv_tv_telefono_post.text = phone
         cv_tv_correo_post.text = email
 
-        val viewModel = ViewModelProviders.of(this).get(RecyclerPostsActivityViewModel::class.java)
+        val viewModel = ViewModelProvider(this).get(RecyclerPostsActivityViewModel::class.java)
+
 
         viewModel.getRecyclerListDataObserver()
                 .observe(this, Observer<ArrayList<UserPost>> {
@@ -55,10 +55,8 @@ class PostsActivity : AppCompatActivity() {
                                 this@PostsActivity,
                                 "Error in getting data from api",
                                 Toast.LENGTH_LONG
-                        )
-                                .show()
+                        ).show()
                     }
-
                 })
 
         if (id != null) {

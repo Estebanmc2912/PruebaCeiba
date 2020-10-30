@@ -1,7 +1,6 @@
 package com.example.pruebaceiba.viewmodel
 
 import android.content.Context
-import android.view.View
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.pruebaceiba.database.AppDatabase
@@ -19,7 +18,7 @@ import retrofit2.Response
 class RecyclerPostsActivityViewModel : ViewModel(){
 
 
-    lateinit var recyclerListData : MutableLiveData<ArrayList<UserPost>>
+     var recyclerListData : MutableLiveData<ArrayList<UserPost>>
     val listPosts = ArrayList<UserPost>()
 
     init {
@@ -33,7 +32,7 @@ class RecyclerPostsActivityViewModel : ViewModel(){
     fun MakeDBCallPosts(context : Context, index : Int){
         val database = AppDatabase.getDatabase(context)
         val retroInstance = RetroInstance.getRetroInstance().create(RetroService::class.java)
-        var call = retroInstance.getUserPostFromAPI(index.toString())
+        val call = retroInstance.getUserPostFromAPI(index.toString())
         call.enqueue(object : Callback<ArrayList<UserPost>> {
             override fun onResponse(call: Call<ArrayList<UserPost>>, response: Response<ArrayList<UserPost>>) {
                 if (response.isSuccessful){
@@ -46,8 +45,7 @@ class RecyclerPostsActivityViewModel : ViewModel(){
                         }
                         recyclerListData.postValue(listPosts)
                     }
-                    //recyclerListData.postValue(response.body()!!)
-                    //recyclerListData.postValue(listUsers)
+
                 }else{
                     recyclerListData.postValue((null))
                 }
@@ -56,10 +54,7 @@ class RecyclerPostsActivityViewModel : ViewModel(){
                 recyclerListData.postValue(null)
             }
         })
-        /* }else{
-             //listUsers.add(database.users().get(usuarios.id))
-             Toast.makeText(context, "offile y db llena", Toast.LENGTH_SHORT)
-         }*/
+
 
 
     }

@@ -18,7 +18,7 @@ import retrofit2.Response
 
 class RecyclerUserActivityViewModel : ViewModel() {
 
-    lateinit var recyclerListData : MutableLiveData<ArrayList<User>>
+    var recyclerListData : MutableLiveData<ArrayList<User>>
     val listUsers = ArrayList<User>()
 
     init {
@@ -29,12 +29,11 @@ class RecyclerUserActivityViewModel : ViewModel() {
         return recyclerListData
     }
 
-    fun MakeApiCall( context : Context , progress_Bar : View){
+    fun MakeApiCall( context : Context ){
         val database = AppDatabase.getDatabase(context)
 
-        //if (database.users().getSizeUsers()!=DBState.DBsize){
             val retroInstance = RetroInstance.getRetroInstance().create(RetroService::class.java)
-            var call = retroInstance.getUsersFromAPI()
+            val call = retroInstance.getUsersFromAPI()
             call.enqueue(object : Callback<ArrayList<User>> {
                 override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                     if (response.isSuccessful){
@@ -47,8 +46,6 @@ class RecyclerUserActivityViewModel : ViewModel() {
                             }
                             recyclerListData.postValue(listUsers)
                         }
-                        //recyclerListData.postValue(response.body()!!)
-                        //recyclerListData.postValue(listUsers)
                     }else{
                         recyclerListData.postValue((null))
                     }
@@ -57,33 +54,9 @@ class RecyclerUserActivityViewModel : ViewModel() {
                     recyclerListData.postValue(null)
                 }
             })
-       /* }else{
-            //listUsers.add(database.users().get(usuarios.id))
-            Toast.makeText(context, "offile y db llena", Toast.LENGTH_SHORT)
-        }*/
-
 
     }
 
-    /*fun ShowDBinfo( owner : LifecycleOwner){
-
-        val database = AppDatabase.getDatabase(this)
-        val listUsers = ArrayList<User>()
-        CoroutineScope(Dispatchers.IO).launch{
-            database.users().getAll().observe(owner, Observer{
-                if (it!=null){
-                    val usersIterator = it.iterator()
-                    while (usersIterator.hasNext()) {
-                        listUsers.add(usersIterator.next())
-                    }
-                    recyclerListData.postValue(listUsers)
-                }
-
-            })
-
-        }
-
-    }*/
 
 }
 

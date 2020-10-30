@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Prueba de Ingreso</string>
+    <string name="btn_posts">Ver publicaciones</string>
+
 </resources>

@@ -9,19 +9,7 @@
     app:cardElevation="12dp"
     app:cardUseCompatPadding="true">
 
-    <LinearLayout
-        android:id="@+id/cv_ll_usuario"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:animateLayoutChanges="true"
-        android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/cv_rl_usuario"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="15dp">
 
 
             <LinearLayout
@@ -32,7 +20,8 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginTop="2dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="15dp">
 
                 <TextView
                     android:id="@+id/cv_tv_nombre"
@@ -54,12 +43,12 @@
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/stat_sys_phone_call"
+                        android:contentDescription="@null"
                         tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/cv_tv_telefono"
                         style="@style/SubText_CV"
-                        android:text="1-770-736-8031 x56442"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/cv_iv_telefono"
@@ -78,12 +67,12 @@
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/ic_dialog_email"
+                        android:contentDescription="@null"
                         tools:ignore="MissingConstraints" />
 
                     <TextView
                         android:id="@+id/cv_tv_correo"
                         style="@style/SubText_CV"
-                        android:text="Sincere@email.com"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/cv_iv_correo"
@@ -106,17 +95,13 @@
                     <Button
                         android:id="@+id/cv_btn_verPublicaciones"
                         style="@style/button_cv"
-                        android:text="Ver publicaciones"
+                        android:text="@string/btn_posts"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.965"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        android:onClick="onClickPosts"/>
+                        />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
-
-        </RelativeLayout>
-    </LinearLayout>
-
 </androidx.cardview.widget.CardView>

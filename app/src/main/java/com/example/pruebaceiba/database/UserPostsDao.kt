@@ -2,7 +2,6 @@ package com.example.pruebaceiba.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.example.pruebaceiba.model.User
 import com.example.pruebaceiba.model.UserPost
 
 @Dao
