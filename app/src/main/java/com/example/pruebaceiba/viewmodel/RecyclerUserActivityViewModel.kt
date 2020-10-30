@@ -22,6 +22,7 @@ import retrofit2.Response
 class RecyclerUserActivityViewModel : ViewModel() {
 
     lateinit var recyclerListData : MutableLiveData<ArrayList<User>>
+    val listUsers = ArrayList<User>()
 
     init {
         recyclerListData = MutableLiveData()
@@ -33,7 +34,7 @@ class RecyclerUserActivityViewModel : ViewModel() {
 
     fun MakeApiCall( context : Context ){
         val database = AppDatabase.getDatabase(context)
-        //val listUsers = ArrayList<User>()
+
 
             val retroInstance = RetroInstance.getRetroInstance().create(RetroService::class.java)
             var call = retroInstance.getUsersFromAPI()
@@ -42,13 +43,16 @@ class RecyclerUserActivityViewModel : ViewModel() {
                     if (response.isSuccessful){
                         //DBState.DBsize = response.body()!!.size
                         CoroutineScope(Dispatchers.IO).launch{
+
                             for (usuarios in response.body()!!)
                             {
                                 database.users().insertAll(usuarios)
-                                //listUsers.add(database.users().get(usuarios.id))
+                                listUsers.add(database.users().get(usuarios.id))
                             }
+                            recyclerListData.postValue(listUsers)
                         }
-                        recyclerListData.postValue(response.body()!!)
+                        //recyclerListData.postValue(response.body()!!)
+                        //recyclerListData.postValue(listUsers)
                     }else{
                         recyclerListData.postValue((null))
                     }
