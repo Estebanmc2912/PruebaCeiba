@@ -1,13 +1,10 @@
 package com.example.pruebaceiba.viewmodel
 
 import android.content.Context
-import android.os.Bundle
-import androidx.lifecycle.LifecycleOwner
+import android.view.View
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.example.pruebaceiba.MainActivity
-import com.example.pruebaceiba.Utils.DBState
+import com.example.pruebaceiba.utils.DBState
 import com.example.pruebaceiba.database.AppDatabase
 import com.example.pruebaceiba.model.User
 import com.example.pruebaceiba.network.RetroInstance
@@ -32,18 +29,17 @@ class RecyclerUserActivityViewModel : ViewModel() {
         return recyclerListData
     }
 
-    fun MakeApiCall( context : Context ){
+    fun MakeApiCall( context : Context , progress_Bar : View){
         val database = AppDatabase.getDatabase(context)
 
-
+        //if (database.users().getSizeUsers()!=DBState.DBsize){
             val retroInstance = RetroInstance.getRetroInstance().create(RetroService::class.java)
             var call = retroInstance.getUsersFromAPI()
             call.enqueue(object : Callback<ArrayList<User>> {
                 override fun onResponse(call: Call<ArrayList<User>>, response: Response<ArrayList<User>>) {
                     if (response.isSuccessful){
-                        //DBState.DBsize = response.body()!!.size
+                        DBState.DBsize = response.body()!!.size
                         CoroutineScope(Dispatchers.IO).launch{
-
                             for (usuarios in response.body()!!)
                             {
                                 database.users().insertAll(usuarios)
@@ -61,6 +57,12 @@ class RecyclerUserActivityViewModel : ViewModel() {
                     recyclerListData.postValue(null)
                 }
             })
+       /* }else{
+            //listUsers.add(database.users().get(usuarios.id))
+            Toast.makeText(context, "offile y db llena", Toast.LENGTH_SHORT)
+        }*/
+
+
     }
 
     /*fun ShowDBinfo( owner : LifecycleOwner){

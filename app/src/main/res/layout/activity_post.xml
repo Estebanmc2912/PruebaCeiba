@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cv_usuario"
+    android:id="@+id/cv_usuario_post"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:animateLayoutChanges="true"
@@ -10,14 +10,14 @@
     app:cardUseCompatPadding="true">
 
     <LinearLayout
-        android:id="@+id/cv_ll_usuario"
+        android:id="@+id/cv_ll_usuario_post"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:animateLayoutChanges="true"
         android:orientation="vertical">
 
         <RelativeLayout
-            android:id="@+id/cv_rl_usuario"
+            android:id="@+id/cv_rl_usuario_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -25,7 +25,7 @@
 
 
             <LinearLayout
-                android:id="@+id/cv_ll_usuario_info"
+                android:id="@+id/cv_ll_usuario_info_post"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -35,63 +35,62 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/cv_tv_nombre"
+                    android:id="@+id/cv_tv_nombre_post"
                     style="@style/Title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-
-                />
+                    android:text="Leanne Graham" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cv_cl_telefono"
+                    android:id="@+id/cv_cl_telefono_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/cv_iv_telefono"
+                        android:id="@+id/cv_iv_telefono_post"
                         style="@style/Icon_CV"
-                        app:layout_constraintEnd_toStartOf="@+id/cv_tv_telefono"
+                        app:layout_constraintEnd_toStartOf="@+id/cv_tv_telefono_post"
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/stat_sys_phone_call"
                         tools:ignore="MissingConstraints" />
 
                     <TextView
-                        android:id="@+id/cv_tv_telefono"
+                        android:id="@+id/cv_tv_telefono_post"
                         style="@style/SubText_CV"
                         android:text="1-770-736-8031 x56442"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cv_iv_telefono"
+                        app:layout_constraintStart_toEndOf="@+id/cv_iv_telefono_post"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cv_cl_correo"
+                    android:id="@+id/cv_cl_correo_post"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <ImageView
-                        android:id="@+id/cv_iv_correo"
+                        android:id="@+id/cv_iv_correo_post"
                         style="@style/Icon_CV"
-                        app:layout_constraintEnd_toStartOf="@+id/cv_tv_correo"
+                        app:layout_constraintEnd_toStartOf="@+id/cv_tv_correo_post"
                         app:layout_constraintHorizontal_bias="0.015"
                         app:layout_constraintStart_toStartOf="parent"
                         app:srcCompat="@android:drawable/ic_dialog_email"
                         tools:ignore="MissingConstraints" />
 
                     <TextView
-                        android:id="@+id/cv_tv_correo"
+                        android:id="@+id/cv_tv_correo_post"
                         style="@style/SubText_CV"
                         android:text="Sincere@email.com"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@+id/cv_iv_correo"
+                        app:layout_constraintStart_toEndOf="@+id/cv_iv_correo_post"
                         app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
-                    android:id="@+id/cv_ll_correo"
+                    android:id="@+id/cv_ll_correo_post"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -99,24 +98,31 @@
                 </LinearLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/cv_cl_btn"
+                    android:id="@+id/cv_cl_btn_post"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <Button
-                        android:id="@+id/cv_btn_verPublicaciones"
+                        android:id="@+id/cv_btn_verPublicaciones_post"
                         style="@style/button_cv"
-                        android:text="Ver publicaciones"
+                        android:layout_marginStart = "0dp"
+                        android:layout_marginLeft = "0dp"
+                        android:text="Publicaciones:"
+                        android:clickable="false"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.965"
+                        app:layout_constraintHorizontal_bias="0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        android:onClick="onClickPosts"/>
+                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
 
         </RelativeLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_posts"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

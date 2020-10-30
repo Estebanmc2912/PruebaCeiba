@@ -1,4 +1,4 @@
-package com.example.pruebaceiba.Utils
+package com.example.pruebaceiba.utils
 
 object DBState {
     var DBsize : Int = 0

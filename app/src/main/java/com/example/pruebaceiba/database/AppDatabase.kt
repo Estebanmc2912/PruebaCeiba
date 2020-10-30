@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.pruebaceiba.model.User
+import com.example.pruebaceiba.model.UserPost
 
-@Database(entities = [User::class], version = 1,exportSchema = false)
+@Database(entities = [User::class, UserPost::class], version = 2,exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun users():UsersDao
+    abstract fun userPosts():UserPostsDao
 
     companion object {
         @Volatile
